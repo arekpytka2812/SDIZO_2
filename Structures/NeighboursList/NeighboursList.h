@@ -22,11 +22,13 @@ class NeighboursList {
 
     size_t nodesNumber;
     size_t edgesNumber;
+    size_t density;
 
     Edge **edgeTable;
 
 public:
     NeighboursList(const size_t&, const size_t&, const size_t*);
+    NeighboursList(const size_t&, const size_t&, const size_t&);
     ~NeighboursList();
 
     void displayList();

@@ -14,7 +14,9 @@ int main() {
             4, 5, 2
     };
 
-    auto list = new NeighboursList(6, 9, tab);
+    auto fileManager = new FileManager();
+
+    auto list = new NeighboursList(fileManager->getNodesNumber(), fileManager->getEdgesNumber(), fileManager->getTable());
     list->displayList();
 
     return 0;

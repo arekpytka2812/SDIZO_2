@@ -46,6 +46,13 @@ NeighboursList::NeighboursList(const size_t& nodesNumber_, const size_t& edgesNu
         dataIndex += 3;
 
     }
+
+    //density = static_cast<int>(((2 * this->edgesNumber) / (this->nodesNumber * (this->nodesNumber - 1))) * 100);
+}
+
+NeighboursList::NeighboursList(const size_t& nodesNumber_, const size_t& , const size_t&)
+{
+
 }
 
 NeighboursList::~NeighboursList()
