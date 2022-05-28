@@ -2,6 +2,8 @@
 
 int main() {
 
+    srand(time(nullptr));
+
     size_t tab[] = {
             0, 1, 2,
             0, 2, 4,
@@ -14,9 +16,8 @@ int main() {
             4, 5, 2
     };
 
-    auto fileManager = new FileManager();
+    auto list = new NeighboursList(10, 80);
 
-    auto list = new NeighboursList(fileManager->getNodesNumber(), fileManager->getEdgesNumber(), fileManager->getTable());
     list->displayList();
 
     return 0;

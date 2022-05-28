@@ -27,8 +27,8 @@ class NeighboursList {
     Edge **edgeTable;
 
 public:
-    NeighboursList(const size_t&, const size_t&, const size_t*);
-    NeighboursList(const size_t&, const size_t&, const size_t&);
+    NeighboursList(const size_t& nodesNumber_, const size_t& edgesNumber_, const size_t* data);
+    NeighboursList(const size_t& nodesNumber_, const size_t& density_);
     ~NeighboursList();
 
     void displayList();

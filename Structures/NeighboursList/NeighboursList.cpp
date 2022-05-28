@@ -33,7 +33,7 @@ NeighboursList::NeighboursList(const size_t& nodesNumber_, const size_t& edgesNu
 
         else
         {
-            Edge *tempPointer = this->edgeTable[data[dataIndex]];
+            auto *tempPointer = this->edgeTable[data[dataIndex]];
 
             while(tempPointer->next != nullptr)
             {
@@ -47,11 +47,96 @@ NeighboursList::NeighboursList(const size_t& nodesNumber_, const size_t& edgesNu
 
     }
 
-    //density = static_cast<int>(((2 * this->edgesNumber) / (this->nodesNumber * (this->nodesNumber - 1))) * 100);
+    this->density = ((2 * this->edgesNumber * 100) / (this->nodesNumber * (this->nodesNumber - 1)));
+
 }
 
-NeighboursList::NeighboursList(const size_t& nodesNumber_, const size_t& , const size_t&)
+NeighboursList::NeighboursList(const size_t& nodesNumber_, const size_t& density_)
+    : nodesNumber(nodesNumber_), density(density_)
 {
+    // calculating edge number from density and node number
+    this->edgesNumber = (this->density ) * this->nodesNumber * (this->nodesNumber - 1) / 200;
+    int currentEdgeNumber = this->edgesNumber;
+
+    // initialinig table
+    this->edgeTable = new Edge* [this->nodesNumber];
+
+    for(int i = 0; i < this->nodesNumber; i++)
+    {
+        this->edgeTable[i] = nullptr;
+    }
+
+    // this loop makes connected graph by connecting node with next node
+    for(int i = 0; i < this->nodesNumber && currentEdgeNumber != 0; i++)
+    {
+        Edge* tempEdge = nullptr;
+
+        if(i == this->nodesNumber - 1)
+            tempEdge = new Edge(i, 0, rand() % 10);
+
+        else
+            tempEdge = new Edge(i, i + 1, rand() % 10);
+
+
+        if(edgeTable[i] == nullptr)
+            edgeTable[i] = tempEdge;
+        else
+        {
+            auto *tempPointer = this->edgeTable[i];
+
+            while(tempPointer->next != nullptr)
+            {
+                tempPointer = tempPointer->next;
+            }
+
+            tempPointer->next = tempEdge;
+            tempEdge->previous = tempPointer;
+        }
+        currentEdgeNumber--;
+    }
+
+    // if there are some edge to create this loop makes it
+    while(currentEdgeNumber != 0)
+    {
+        bool exists = false;
+        auto cost = rand() % 10;
+        auto source = rand() % this->nodesNumber;
+        auto destination = rand() % this->nodesNumber;
+
+        // loop prevents from making edge to the same node
+        while (destination == source)
+        {
+            destination = rand() % this->nodesNumber;
+        }
+
+        auto tempPointer = this->edgeTable[source];
+
+        while(tempPointer != nullptr)
+        {
+            // this flag and if statement checks wheter edge with such parameters exists
+            if(tempPointer->destination == destination)
+            {
+                exists = true;
+                break;
+            }
+
+            // moving temp Pointer to the next edge
+            if(tempPointer->next != nullptr)
+                tempPointer = tempPointer->next;
+            else
+                break;
+        }
+
+        if(!exists)
+        {
+            // creating edge
+            auto tempEdge = new Edge(source, destination, cost);
+            tempPointer->next = tempEdge;
+            tempEdge->previous = tempPointer;
+            currentEdgeNumber--;
+        }
+
+    }
 
 }
 
