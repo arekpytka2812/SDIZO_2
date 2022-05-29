@@ -2,7 +2,7 @@
 #define SDIZO_2_HEAP_H
 
 #include <stdexcept>
-#include "NeighboursList/NeighboursList.h"
+#include "../NeighboursList/NeighboursList.h"
 
 
 class Heap {
@@ -16,9 +16,9 @@ public:
     Heap();
     ~Heap();
 
-    Edge& operator[](int);
+    Edge* operator[](int);
 
-    void push(Edge);
+    void push(Edge* edge);
     void pop();
 };
 

@@ -33,6 +33,21 @@ public:
 
     void displayList();
 
+    Edge** getEdgeTable()
+    {
+        return this->edgeTable;
+    }
+
+    size_t getNodesNumber()
+    {
+        return this->nodesNumber;
+    }
+
+    size_t getEdgesNumber()
+    {
+        return this->edgesNumber;
+    }
+
 };
 
 
