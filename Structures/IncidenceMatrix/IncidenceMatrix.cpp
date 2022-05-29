@@ -67,9 +67,9 @@ IncidenceMatrix::IncidenceMatrix(const size_t &nodesNumber_, const size_t &densi
     // making graph connected
     for(int i = 0; i < this->nodesNumber; i++)
     {
-        this->edgesValues[i] = rand() % 10;
+        this->edgesValues[i] = rand() % 100;
 
-        if(i != 5)
+        if(i != this->nodesNumber)
         {
             matrix[i][i] = -1;
             matrix[i + 1][i] = 1;
@@ -87,7 +87,7 @@ IncidenceMatrix::IncidenceMatrix(const size_t &nodesNumber_, const size_t &densi
     while(currentEdgeNumber != 0)
     {
         bool exists = false;
-        auto cost = rand() % 10;
+        auto cost = rand() % 100;
         auto source = rand() % this->nodesNumber;
         auto destination = rand() % this->nodesNumber;
 

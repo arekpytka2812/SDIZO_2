@@ -16,9 +16,15 @@ int main() {
             4, 5, 2
     };
 
-    auto matrix = new IncidenceMatrix(6, 9, tab);
+ //   auto matrix = new IncidenceMatrix(6, 80);
 
-    matrix->displayMatrix();
+//    matrix->displayMatrix();
+
+    auto list = new NeighboursList(6, 80);
+
+    list->displayList();
+
+    DijkstraAlgorithm::findShortestPath(list, 2, 5);
 
     return 0;
 }

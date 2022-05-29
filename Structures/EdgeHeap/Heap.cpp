@@ -2,7 +2,7 @@
 
 Heap::Heap()
 {
-
+    this->size = 0;
 }
 
 Heap::~Heap()
@@ -12,17 +12,20 @@ Heap::~Heap()
     this->size = 0;
 }
 
-void Heap::heapify()
+void Heap::heapify(int i)
 {
-    int i = this->size - 1;
-    int parent = (i - 1)/2;
+    int min {i}, left {2*i + 1}, right {2*i + 2};
 
-    while(this->table[parent]->cost > this->table[i]->cost)
-    {
-        std::swap(this->table[parent], this->table[i]);
+    if(left < this->size && table[left] < table[min])
+        min = left;
 
-        i = parent;
-        parent = (i - 1) / 2;
+    if(right < this->size && table[right] < table[min])
+        min = right;
+
+    if(min != i){
+        std::swap(table[i], table[min]);
+
+        heapify(min);
     }
 }
 
@@ -70,11 +73,58 @@ void Heap::push(Edge* edge)
 
     this->table = tempTable;
 
-    this->heapify();
+    int i = this->size - 1;
 
+    while (i != 0 && table[(i - 1)/2] > table[i])
+    {
+        std::swap(table[i], table[(i - 1)/2]);
+        i = (i - 1)/2;
+    }
 }
 
-void Heap::pop()
+Edge* Heap::pop()
 {
+    if(this->size == 0)
+        return nullptr;
 
+    auto returnEdge = new Edge(this->table[0]->source, this->table[0]->destination, this->table[0]->cost);
+
+    if(this->size == 1)
+    {
+        this->size--;
+        delete[] table;
+        return returnEdge;
+    }
+
+    std::swap(this->table[0], this->table[this->size - 1]);
+
+    this->size--;
+
+    auto tempTable = new Edge * [this->size];
+
+    for(int i = 0; i < this->size; i++)
+        tempTable[i] = this->table[0];
+
+    delete[] this->table;
+    this->table = tempTable;
+
+    this->buildHeap();
+
+    return returnEdge;
+}
+
+void Heap::printHeap()
+{
+    for(int i = 0; i < this->size; i++)
+    {
+        std::cout << "[" << i << "] -> " << this->table[i]->cost << "\n";
+    }
+}
+
+void Heap::buildHeap()
+{
+    int startIndex {(this->size / 2) - 1};
+
+    for(int i = startIndex; i >= 0; i--)
+        heapify(i);
 }

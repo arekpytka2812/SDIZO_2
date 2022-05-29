@@ -15,13 +15,8 @@ Edge::Edge()
 NeighboursList::NeighboursList(const size_t& nodesNumber_, const size_t& edgesNumber_, const size_t* data)
     : nodesNumber(nodesNumber_), edgesNumber(edgesNumber_)
 {
-    this->edgeTable = new Edge * [this->nodesNumber];
-
     // initializing table with nullptrs
-    for(int i = 0; i < this->nodesNumber; i++)
-    {
-        this->edgeTable[i] = nullptr;
-    }
+    this->edgeTable = new Edge * [this->nodesNumber]{nullptr};
 
     // each edge is being inserted to the table
     for(int dataIndex = 0; dataIndex < this->edgesNumber * 3;)
@@ -33,7 +28,7 @@ NeighboursList::NeighboursList(const size_t& nodesNumber_, const size_t& edgesNu
 
         else
         {
-            auto *tempPointer = this->edgeTable[data[dataIndex]];
+            auto tempPointer = this->edgeTable[data[dataIndex]];
 
             while(tempPointer->next != nullptr)
             {
@@ -72,17 +67,17 @@ NeighboursList::NeighboursList(const size_t& nodesNumber_, const size_t& density
         Edge* tempEdge = nullptr;
 
         if(i == this->nodesNumber - 1)
-            tempEdge = new Edge(i, 0, rand() % 10);
+            tempEdge = new Edge(i, 0, rand() % 100);
 
         else
-            tempEdge = new Edge(i, i + 1, rand() % 10);
+            tempEdge = new Edge(i, i + 1, rand() % 100);
 
 
         if(edgeTable[i] == nullptr)
             edgeTable[i] = tempEdge;
         else
         {
-            auto *tempPointer = this->edgeTable[i];
+            auto tempPointer = this->edgeTable[i];
 
             while(tempPointer->next != nullptr)
             {
@@ -99,7 +94,7 @@ NeighboursList::NeighboursList(const size_t& nodesNumber_, const size_t& density
     while(currentEdgeNumber != 0)
     {
         bool exists = false;
-        auto cost = rand() % 10;
+        auto cost = rand() % 100;
         auto source = rand() % this->nodesNumber;
         auto destination = rand() % this->nodesNumber;
 

@@ -10,7 +10,7 @@ class Heap {
     Edge** table;
     int size;
 
-    void heapify();
+    void heapify(int i);
 
 public:
     Heap();
@@ -19,7 +19,16 @@ public:
     Edge* operator[](int);
 
     void push(Edge* edge);
-    void pop();
+    Edge* pop();
+
+    void printHeap();
+
+    void buildHeap();
+
+    int getSize()
+    {
+        return this->size;
+    }
 };
 
 
