@@ -16,9 +16,9 @@ int main() {
             4, 5, 2
     };
 
-    auto list = new NeighboursList(10, 80);
+    auto matrix = new IncidenceMatrix(6, 9, tab);
 
-    list->displayList();
+    matrix->displayMatrix();
 
     return 0;
 }

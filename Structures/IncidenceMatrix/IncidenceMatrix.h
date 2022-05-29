@@ -7,27 +7,29 @@
 
 class IncidenceMatrix {
 
-    size_t nodeNumber;
-    size_t edgeNumber;
+    size_t nodesNumber;
+    size_t edgesNumber;
+    size_t density;
 
     int **matrix;
     int *edgesValues;
 
 public:
 
-    IncidenceMatrix(const size_t&, const size_t&, const size_t*);
+    IncidenceMatrix(const size_t & nodeNumber_, const size_t &edgeNumber_, const size_t *data);
+    IncidenceMatrix(const size_t& nodesNumber_, const size_t& density_);
     ~IncidenceMatrix();
 
     void displayMatrix();
 
-    size_t getNodeNumber()
+    size_t getNodesNumber()
     {
-        return this->nodeNumber;
+        return this->nodesNumber;
     }
 
-    size_t getEdgeNumber()
+    size_t getEdgesNumber()
     {
-        return this->edgeNumber;
+        return this->edgesNumber;
     }
 
     int** getMatrix()
