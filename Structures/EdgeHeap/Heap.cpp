@@ -94,18 +94,15 @@ Edge* Heap::pop()
 
     this->size--;
 
-    delete this->table[this->size];
+    delete this->table[this->size + 1];
 
-    this->buildHeap();
+    buildHeap();
 
     return returnEdge;
 }
 
 void Heap::printHeap()
 {
-    if(this->size == 0)
-        return;
-
     for(int i = 0; i < this->size; i++)
     {
         std::cout << "[" << i << "] -> " << this->table[i]->cost << "\n";

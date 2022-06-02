@@ -1,3 +1,4 @@
+#include <cmath>
 #include "GraphGenerator.h"
 
 GraphGenerator::GraphGenerator(size_t nodesNumber_, size_t density_)
@@ -7,21 +8,26 @@ GraphGenerator::GraphGenerator(size_t nodesNumber_, size_t density_)
     this->edgesNumber = (this->density) * this->nodesNumber * (this->nodesNumber - 1) / 200;
     int currentEdgeNumber = this->edgesNumber;
 
-    this->data = new size_t[this->edgesNumber * 3]{999};
+    this->data = new size_t[this->edgesNumber * 3];
 
-    for(int i = 0; i < this->nodesNumber * 3; i += 3)
+    for(int i = 0; i < this->edgesNumber * 3; i++)
     {
-        if(i == (this->nodesNumber * 3) - 3)
+        data[i] = 999;
+    }
+
+    for(int i = 0; i < this->nodesNumber; i++)
+    {
+        if(i == this->nodesNumber - 1)
         {
-            data[i] = i;
-            data[i + 1] = 0;
-            data[i + 2] = rand() % 100;
+            data[i * 3] = i;
+            data[i * 3 + 1] = 0;
+            data[i * 3 + 2] = rand() % 100;
         }
         else
         {
-            data[i] = i;
-            data[i + 1] = i + 1;
-            data[i + 2] = rand() % 100;
+            data[i * 3] = i;
+            data[i * 3 + 1] = i + 1;
+            data[i * 3 + 2] = rand() % 100;
         }
 
         this->size += 3;
