@@ -16,10 +16,10 @@ void Heap::heapify(int i)
 {
     int min {i}, left {2*i + 1}, right {2*i + 2};
 
-    if(left < this->size && table[left] < table[min])
+    if(left < this->size && table[left]->cost < table[min]->cost)
         min = left;
 
-    if(right < this->size && table[right] < table[min])
+    if(right < this->size && table[right]->cost < table[min]->cost)
         min = right;
 
     if(min != i){
@@ -73,13 +73,7 @@ void Heap::push(Edge* edge)
 
     this->table = tempTable;
 
-    int i = this->size - 1;
-
-    while (i != 0 && table[(i - 1)/2] > table[i])
-    {
-        std::swap(table[i], table[(i - 1)/2]);
-        i = (i - 1)/2;
-    }
+    this->buildHeap();
 }
 
 Edge* Heap::pop()
@@ -87,7 +81,7 @@ Edge* Heap::pop()
     if(this->size == 0)
         return nullptr;
 
-    auto returnEdge = new Edge(this->table[0]->source, this->table[0]->destination, this->table[0]->cost);
+    auto returnEdge = this->table[0];
 
     if(this->size == 1)
     {
@@ -100,13 +94,7 @@ Edge* Heap::pop()
 
     this->size--;
 
-    auto tempTable = new Edge * [this->size];
-
-    for(int i = 0; i < this->size; i++)
-        tempTable[i] = this->table[0];
-
-    delete[] this->table;
-    this->table = tempTable;
+    delete this->table[this->size];
 
     this->buildHeap();
 
@@ -115,6 +103,9 @@ Edge* Heap::pop()
 
 void Heap::printHeap()
 {
+    if(this->size == 0)
+        return;
+
     for(int i = 0; i < this->size; i++)
     {
         std::cout << "[" << i << "] -> " << this->table[i]->cost << "\n";

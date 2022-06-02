@@ -17,7 +17,6 @@ class IncidenceMatrix {
 public:
 
     IncidenceMatrix(const size_t & nodeNumber_, const size_t &edgeNumber_, const size_t *data);
-    IncidenceMatrix(const size_t& nodesNumber_, const size_t& density_);
     ~IncidenceMatrix();
 
     void displayMatrix();

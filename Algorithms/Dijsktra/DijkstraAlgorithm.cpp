@@ -30,13 +30,14 @@ NeighboursList* DijkstraAlgorithm::findShortestPath(NeighboursList *list, int so
 
     distances[source] = 0;
 
-    heap->printHeap();
+    while(heap->getSize())
+    {
+        auto minNode = heap->pop();
 
-//    while(heap->getSize())
-//    {
-//        auto minNode = heap->pop();
-//
-//    }
+        heap->printHeap();
+        std::cout << "\n";
+
+    }
 
     return nullptr;
 }

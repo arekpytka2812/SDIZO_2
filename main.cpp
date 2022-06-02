@@ -20,11 +20,20 @@ int main() {
 
 //    matrix->displayMatrix();
 
-    auto list = new NeighboursList(6, 80);
+    auto gg = new GraphGenerator(6,80);
+
+    auto list = new NeighboursList(gg->getNodesNumber(), gg->getEdgesNumber(), gg->getData());
 
     list->displayList();
 
-    DijkstraAlgorithm::findShortestPath(list, 2, 5);
+    auto matrix = new IncidenceMatrix(gg->getNodesNumber(), gg->getEdgesNumber(), gg->getData());
+
+    matrix->displayMatrix();
+
+
+
+
+    //DijkstraAlgorithm::findShortestPath(list, 2, 5);
 
     return 0;
 }
