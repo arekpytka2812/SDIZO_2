@@ -30,7 +30,10 @@ int main() {
 
     list->displayList();
 
-    Prim::generateMST(list, 0);
+    Prim::generateMST(list, 0)->displayList();
+
+    std::cout << std::endl;
+
     Dijkstra::findShortestPath(list, 0);
 
     return 0;

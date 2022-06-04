@@ -62,7 +62,7 @@ NeighboursList* Dijkstra::findShortestPath(NeighboursList *list, int source)
             continue;
         }
 
-        nodesToRelax[minNode->source] = false;
+        nodesToRelax[currentNode] = false;
         visitedNodes[minNode->destination] = true;
 
         currentNode = getMin(distances, visitedNodes, nodesToRelax, nodesNumber);
