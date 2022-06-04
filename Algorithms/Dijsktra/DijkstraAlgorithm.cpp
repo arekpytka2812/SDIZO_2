@@ -25,20 +25,23 @@ NeighboursList* DijkstraAlgorithm::findShortestPath(NeighboursList *list, int so
 
     }
 
+    heap->printHeap();
+
     distances[source] = 0;
     int curentVertex = source;
-    auto unvisitedNodes = nodesNumber;
 
-    while(heap->getSize())
-    {
-        auto minNode = heap->pop();
-
+//    while(heap->getSize())
+//    {
+//        auto minNode = heap->pop();
+//
+//        auto tempPointer = edgesTable[]
+//
 //        for(int i = 0; i < edgesTable[minNode->source]; i++)
 //        {
 //
 //        }
-
-    }
+//
+//    }
 
     return nullptr;
 }

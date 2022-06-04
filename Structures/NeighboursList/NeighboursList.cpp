@@ -46,6 +46,14 @@ NeighboursList::NeighboursList(const size_t& nodesNumber_, const size_t& edgesNu
 
 }
 
+NeighboursList::NeighboursList(const size_t& nodesNumber_, const size_t& edgesNumber_)
+        : nodesNumber(nodesNumber_), edgesNumber(edgesNumber_)
+{
+    // initializing table with nullptrs
+    this->edgeTable = new Edge * [this->nodesNumber]{nullptr};
+
+}
+
 NeighboursList::~NeighboursList()
 {
     for(int i = 0; i < this->nodesNumber; i++)
@@ -65,6 +73,24 @@ NeighboursList::~NeighboursList()
 
     this->nodesNumber = 0;
     this->edgesNumber = 0;
+}
+
+void NeighboursList::addEdge(Edge *edge)
+{
+    if(this->edgeTable[edge->source] == nullptr)
+        edgeTable[edge->source] = edge;
+    else
+    {
+        auto tempPointer = this->edgeTable[edge->source];
+
+        while(tempPointer->next != nullptr)
+        {
+            tempPointer = tempPointer->next;
+        }
+
+        tempPointer->next = edge;
+        edge->previous = tempPointer;
+    }
 }
 
 void NeighboursList::displayList()

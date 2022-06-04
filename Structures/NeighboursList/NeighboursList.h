@@ -28,7 +28,10 @@ class NeighboursList {
 
 public:
     NeighboursList(const size_t& nodesNumber_, const size_t& edgesNumber_, const size_t* data);
+    NeighboursList(const size_t& nodesNumber_, const size_t& edgesNumber_);
     ~NeighboursList();
+
+    void addEdge(Edge * edge);
 
     void displayList();
 

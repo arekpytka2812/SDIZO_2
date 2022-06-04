@@ -22,7 +22,8 @@ void Heap::heapify(int i)
     if(right < this->size && table[right]->cost < table[min]->cost)
         min = right;
 
-    if(min != i){
+    if(min != i)
+    {
         std::swap(table[i], table[min]);
 
         heapify(min);
@@ -65,10 +66,6 @@ void Heap::push(Edge* edge)
     tempTable[this->size - 1] = edge;
 
     // deleting old table
-    for(int i = 0; i < this->size - 1; i++)
-    {
-        delete[] this->table[i];
-    }
     delete[] this->table;
 
     this->table = tempTable;
@@ -94,7 +91,7 @@ Edge* Heap::pop()
 
     this->size--;
 
-    delete this->table[this->size + 1];
+    this->table[this->size] = nullptr;
 
     buildHeap();
 

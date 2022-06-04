@@ -3,6 +3,8 @@
 
 #include "Algorithms/Prim/PrimAlgorithm.h"
 #include "Algorithms/Dijsktra/DijkstraAlgorithm.h"
+#include "Algorithms/Kruskal/Kruskal.h"
+
 #include "Utility/FileManager/FileManager.h"
 #include "Utility/GraphGenerator/GraphGenerator.h"
 

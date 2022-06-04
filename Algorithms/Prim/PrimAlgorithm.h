@@ -3,10 +3,18 @@
 
 #include "../../Structures/IncidenceMatrix/IncidenceMatrix.h"
 #include "../../Structures/NeighboursList/NeighboursList.h"
+#include "../../Structures/EdgeHeap/Heap.h"
 
-IncidenceMatrix* generateMST(IncidenceMatrix* matrix);
+class Prim{
 
-NeighboursList* generateMST(NeighboursList* list);
+    static bool isEmpty(bool* table, size_t size);
+
+public:
+    static IncidenceMatrix* generateMST(IncidenceMatrix* matrix, int from);
+
+    static NeighboursList* generateMST(NeighboursList* list, int from);
+};
+
 
 
 #endif
