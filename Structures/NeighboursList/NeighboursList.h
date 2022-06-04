@@ -33,6 +33,8 @@ public:
 
     void addEdge(Edge * edge); //TODO change the way of sending arguments
 
+    void addFront(const size_t& source_, const size_t& destination_, const size_t& cost_);
+
     void displayList();
 
     Edge** getEdgeTable()

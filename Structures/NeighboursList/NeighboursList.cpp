@@ -93,6 +93,21 @@ void NeighboursList::addEdge(Edge *edge)
     }
 }
 
+void NeighboursList::addFront(const size_t& source_, const size_t& destination_, const size_t& cost_)
+{
+    auto tempEdge = new Edge(source_, destination_, cost_);
+
+    if(edgeTable[source_] == nullptr)
+    {
+        edgeTable[source_] = tempEdge;
+        return;
+    }
+
+    tempEdge->next = edgeTable[source_];
+    tempEdge->next->previous = tempEdge;
+    edgeTable[source_] = tempEdge;
+}
+
 void NeighboursList::displayList()
 {
     for (int i = 0; i < this->nodesNumber; i++)

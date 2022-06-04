@@ -7,6 +7,12 @@ Heap::Heap()
 
 Heap::~Heap()
 {
+    if(this->size == 0)
+    {
+        this->table = nullptr;
+        return;
+    }
+
     delete[] this->table;
     this->table = nullptr;
     this->size = 0;
