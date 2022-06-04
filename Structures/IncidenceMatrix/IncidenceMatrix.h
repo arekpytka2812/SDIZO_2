@@ -11,13 +11,18 @@ class IncidenceMatrix {
     size_t edgesNumber;
     size_t density;
 
+    size_t usedEdges = 0;
+
     int **matrix;
     int *edgesValues;
 
 public:
 
     IncidenceMatrix(const size_t & nodeNumber_, const size_t &edgeNumber_, const size_t *data);
+    IncidenceMatrix(const size_t & nodeNumber_, const size_t &edgeNumber_);
     ~IncidenceMatrix();
+
+    void addEdge(const size_t &source, const size_t &destination, const size_t &cost);
 
     void displayMatrix();
 

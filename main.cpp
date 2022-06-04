@@ -3,6 +3,8 @@
 
 int main() {
 
+
+
     srand(time(nullptr));
 
     size_t tab[] = {
@@ -19,12 +21,16 @@ int main() {
 
     auto gg = new GraphGenerator(6,80);
 
+    auto matrix = new IncidenceMatrix(6, 9, tab);
     auto list = new NeighboursList(6, 9, tab);
+
+    matrix->displayMatrix();
+
+    Prim::generateMST(matrix, 1);
 
     list->displayList();
 
-    Kruskal::generateMST(list)->displayList();
-
+    Prim::generateMST(list, 1)->displayList();
 
     return 0;
 }

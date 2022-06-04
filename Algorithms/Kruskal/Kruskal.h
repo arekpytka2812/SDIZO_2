@@ -12,7 +12,7 @@ class Kruskal {
 
 public:
 
-    static IncidenceMatrix* generateMST(IncidenceMatrix* matrix);
+    static IncidenceMatrix* generateMST(IncidenceMatrix* incidenceMatrix);
 
     static NeighboursList* generateMST(NeighboursList* list);
 };

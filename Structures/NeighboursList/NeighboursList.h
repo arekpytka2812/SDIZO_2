@@ -31,7 +31,7 @@ public:
     NeighboursList(const size_t& nodesNumber_, const size_t& edgesNumber_);
     ~NeighboursList();
 
-    void addEdge(Edge * edge);
+    void addEdge(Edge * edge); //TODO change the way of sending arguments
 
     void displayList();
 

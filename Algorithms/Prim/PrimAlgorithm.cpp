@@ -1,9 +1,109 @@
 #include "PrimAlgorithm.h"
 
+// TODO create special type for returns
 
-IncidenceMatrix* Prim::generateMST(IncidenceMatrix* matrix, int from)
+IncidenceMatrix* Prim::generateMST(IncidenceMatrix* incidenceMatrix, int from)
 {
+    // initializing local variables
+    auto edgesNumber = incidenceMatrix->getEdgesNumber();
+    auto nodesNumber = incidenceMatrix->getNodesNumber();
+    auto matrix = incidenceMatrix->getMatrix();
+    auto edgeValues = incidenceMatrix->getEdgesValues();
 
+    int totalCost = 0;
+
+    auto heap = new Heap();
+    auto resultMatrix = new IncidenceMatrix(nodesNumber, edgesNumber);
+
+    auto visitedNodes = new bool[nodesNumber]{false};
+    visitedNodes[from] = true;
+
+    // inserting edge heap
+    for(int i = 0; i < edgesNumber; i++)
+    {
+        size_t source, destination;
+
+        if(matrix[from][i] != 0)
+        {
+            for(int j = 0; j < nodesNumber; j++)
+            {
+                if(matrix[j][i] == -1)
+                    source = j;
+
+                if(matrix[j][i] == 1)
+                    destination = j;
+            }
+
+            heap->push(new Edge(source, destination, edgeValues[i]));
+        }
+    }
+
+    // main algorithm
+    while(isEmpty(visitedNodes, nodesNumber))
+    {
+        // popping edge with min cost
+        auto minEdge = heap->pop();
+
+        // checking if node has been already visited
+        // if hasnt, adding it to result list
+        if(!visitedNodes[minEdge->destination])
+        {
+            totalCost += minEdge->cost;
+            visitedNodes[minEdge->destination] = true;
+
+            resultMatrix->addEdge(minEdge->source, minEdge->destination, minEdge->cost);
+
+            // adding new edges to heap
+            for(int i = 0; i < edgesNumber; i++)
+            {
+                size_t source, destination;
+
+                if(matrix[minEdge->source][i] != 0 || matrix[minEdge->destination != 0])
+                {
+                    for(int j = 0; j < nodesNumber; j++)
+                    {
+                        if(matrix[j][i] == -1)
+                            source = j;
+
+                        if(matrix[j][i] == 1)
+                            destination = j;
+                    }
+
+                    heap->push(new Edge(source, destination, edgeValues[i]));
+                }
+            }
+        }
+
+        if(!visitedNodes[minEdge->source])
+        {
+            totalCost += minEdge->cost;
+            visitedNodes[minEdge->source] = true;
+
+            resultMatrix->addEdge(minEdge->source, minEdge->destination, minEdge->cost);
+
+            // adding new edges to heap
+            for(int i = 0; i < edgesNumber; i++)
+            {
+                size_t source, destination;
+
+                if(matrix[minEdge->source][i] != 0 || matrix[minEdge->destination])
+                {
+                    for(int j = 0; j < nodesNumber; j++)
+                    {
+                        if(matrix[j][i] == -1)
+                            source = j;
+
+                        if(matrix[j][i] == 1)
+                            destination = j;
+                    }
+
+                    heap->push(new Edge(source, destination, edgeValues[i]));
+                }
+            }
+        }
+    }
+
+    resultMatrix->displayMatrix();
 
     return nullptr;
 }
