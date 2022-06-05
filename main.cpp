@@ -19,20 +19,23 @@ int main() {
             5, 6, 2
     };
 
-    auto gg = new GraphGenerator(40,80);
-
-
-    auto matrix = new IncidenceMatrix(7, 10, tab);
     auto list = new NeighboursList(7, 10, tab);
 
     list->displayList();
-    BellmanFord::findShortestPath(matrix, 0);
+
+    Dijkstra::findShortestPath(list, 0);
 
     std::cout << std::endl;
 
     BellmanFord::findShortestPath(list, 0);
 
+    std::cout << std::endl;
 
+    Prim::generateMST(list, 0)->displayList();
+
+    std::cout << std::endl;
+
+    Kruskal::generateMST(list)->displayList();
 
     return 0;
 }

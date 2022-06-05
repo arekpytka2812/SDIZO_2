@@ -8,8 +8,6 @@ struct Edge
 {
     Edge(const size_t &source_, const size_t &destination_, int cost_);
 
-    Edge();
-
     int cost;
     size_t source;
     size_t destination;

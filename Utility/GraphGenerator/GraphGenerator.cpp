@@ -8,13 +8,15 @@ GraphGenerator::GraphGenerator(size_t nodesNumber_, size_t density_)
     this->edgesNumber = (this->density) * this->nodesNumber * (this->nodesNumber - 1) / 200;
     int currentEdgeNumber = this->edgesNumber;
 
+    // initializing data table
     this->data = new size_t[this->edgesNumber * 3];
 
     for(int i = 0; i < this->edgesNumber * 3; i++)
     {
-        data[i] = 999;
+        data[i] = INT_MAX;
     }
 
+    // making sure
     for(int i = 0; i < this->nodesNumber; i++)
     {
         if(i == this->nodesNumber - 1)
@@ -47,7 +49,7 @@ GraphGenerator::GraphGenerator(size_t nodesNumber_, size_t density_)
             destination = rand() % this->nodesNumber;
         }
 
-        for(int i = 0; data[i] != 999; i += 3)
+        for(int i = 0; data[i] != INT_MAX; i += 3)
         {
             if(data[i] == source && data[i + 1] == destination)
             {

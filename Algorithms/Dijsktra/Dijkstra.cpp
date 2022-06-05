@@ -35,7 +35,11 @@ IncidenceMatrix* Dijkstra::findShortestPath(IncidenceMatrix *incidenceMatrix, in
 
             for(int j = 0; j < nodesNumber; j++)
                 if(matrix[j][i] == 1)
+                {
                     destination = j;
+                    break;
+                }
+
 
             heap->push(new Edge(source, destination, edgeValues[i]));
         }
@@ -55,8 +59,6 @@ IncidenceMatrix* Dijkstra::findShortestPath(IncidenceMatrix *incidenceMatrix, in
         {
             minEdge = heap->pop();
 
-            visitedNodes[minEdge->destination] = true;
-
             if(distances[minEdge->destination] > distances[minEdge->source] + minEdge->cost)
             {
                 distances[minEdge->destination] = distances[minEdge->source] + minEdge->cost;
@@ -67,9 +69,12 @@ IncidenceMatrix* Dijkstra::findShortestPath(IncidenceMatrix *incidenceMatrix, in
         }
 
         nodesToRelax[currentNode] = false;
-        visitedNodes[minEdge->destination] = true;
+        visitedNodes[currentNode] = true;
 
         currentNode = getMin(distances, visitedNodes, nodesToRelax, nodesNumber);
+
+        if(currentNode == -1)
+            break;
 
         for(int i = 0; i < edgesNumber; i++)
         {
@@ -82,7 +87,11 @@ IncidenceMatrix* Dijkstra::findShortestPath(IncidenceMatrix *incidenceMatrix, in
                 for(int j = 0; j < nodesNumber; j++)
                 {
                     if(matrix[j][i] == 1)
+                    {
                         destination = j;
+                        break;
+                    }
+
                 }
 
                 heap->push(new Edge(source, destination, edgeValues[i]));
@@ -105,8 +114,6 @@ IncidenceMatrix* Dijkstra::findShortestPath(IncidenceMatrix *incidenceMatrix, in
     delete[] previous;
     delete[] distances;
     delete[] nodesToRelax;
-
-
 
     return nullptr;
 }
@@ -198,6 +205,7 @@ NeighboursList* Dijkstra::findShortestPath(NeighboursList *list, int from)
 
     for(int i = 0; i < nodesNumber; i++)
         std::cout << previous[i] << "    ";
+
 
     // clearing and realeasing memory
     minNode = nullptr;

@@ -6,11 +6,6 @@ Edge::Edge(const size_t &source_, const size_t &destination_, int cost_)
 
 }
 
-Edge::Edge()
-{
-
-}
-
 
 NeighboursList::NeighboursList(const size_t& nodesNumber_, const size_t& edgesNumber_, const size_t* data)
     : nodesNumber(nodesNumber_), edgesNumber(edgesNumber_)
