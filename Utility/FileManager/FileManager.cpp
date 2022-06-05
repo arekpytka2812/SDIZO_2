@@ -3,7 +3,17 @@
 
 FileManager::FileManager()
 {
-    this->readFromFile();
+    this->resultsPath = "../Files/results.csv";
+    this->resultsFile.open(this->resultsPath.c_str(), std::fstream::out | std::fstream::trunc);
+
+    this->resultsFile.seekp(0);
+    this->resultsFile.clear();
+
+    if(resultsFile.good())
+    {
+        this->resultsFile << "nodesNumber;" << "density;" << "time;" << std::endl;
+        this->resultsFile.flush();
+    }
 }
 
 FileManager::~FileManager()
@@ -21,7 +31,7 @@ void FileManager::readFromFile()
     std::cout << "Type file name: \n";
     std::cin >> this->graphPath;
 
-    // opeinig file
+    // opening file
     this->graphFile.open(this->graphPath.c_str(), std::fstream::in);
 
     this->graphFile.clear();
@@ -38,5 +48,14 @@ void FileManager::readFromFile()
         {
             this->graphFile >> this->table[i];
         }
+    }
+}
+
+void FileManager::writeToFile(size_t nodesNumber_, size_t density_, double time_)
+{
+    if(this->resultsFile.good())
+    {
+        this->resultsFile << nodesNumber_ << ";" << density_ << ";" << time_ << ";" << std::endl;
+        this->resultsFile.flush();
     }
 }

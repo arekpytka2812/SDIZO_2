@@ -1,8 +1,10 @@
 #include "IncidenceMatrix.h"
 
 IncidenceMatrix::IncidenceMatrix(const size_t & nodeNumber_, const size_t &edgeNumber_, const size_t *data)
-    :nodesNumber(nodeNumber_), edgesNumber(edgeNumber_)
 {
+    this->nodesNumber = nodeNumber_;
+    this->edgesNumber = edgeNumber_;
+
     // initializing matrix with zeros
 
     this->matrix = new int *[nodesNumber];
@@ -40,8 +42,10 @@ IncidenceMatrix::IncidenceMatrix(const size_t & nodeNumber_, const size_t &edgeN
 }
 
 IncidenceMatrix::IncidenceMatrix(const size_t & nodeNumber_, const size_t &edgeNumber_)
-    :nodesNumber(nodeNumber_), edgesNumber(edgeNumber_)
 {
+    this->nodesNumber = nodeNumber_;
+    this->edgesNumber = edgeNumber_;
+
     matrix = new int*[this->nodesNumber];
 
     for(int i = 0; i < this->nodesNumber; i++)
@@ -83,7 +87,7 @@ void IncidenceMatrix::addEdge(const size_t &source, const size_t &destination, c
     this->usedEdges++;
 }
 
-void IncidenceMatrix::displayMatrix()
+void IncidenceMatrix::displayGraph()
 {
     std::cout << "  E   ";
 
@@ -115,4 +119,29 @@ void IncidenceMatrix::displayMatrix()
     }
 
     std::cout <<"\n";
+}
+
+size_t IncidenceMatrix::getNodesNumber()
+{
+    return this->nodesNumber;
+}
+
+size_t IncidenceMatrix::getEdgesNumber()
+{
+    return this->edgesNumber;
+}
+
+size_t IncidenceMatrix::getDensity()
+{
+    return this->density;
+}
+
+int** IncidenceMatrix::getMatrix()
+{
+    return this->matrix;
+}
+
+int* IncidenceMatrix::getEdgesValues()
+{
+    return this->edgesValues;
 }

@@ -1,0 +1,21 @@
+#ifndef SDIZO_2_TIMER_H
+#define SDIZO_2_TIMER_H
+
+#include <windows.h>
+#include <iostream>
+
+class Timer {
+
+    double PCFreq = 0.0;
+    __int64 CounterStart = 0;
+
+public:
+
+    Timer() = default;
+
+    void startTimer();
+    double stopTimer();
+};
+
+
+#endif

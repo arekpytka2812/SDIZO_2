@@ -101,9 +101,7 @@ IncidenceMatrix* Prim::generateMST(IncidenceMatrix* incidenceMatrix, int from)
         }
     }
 
-    resultMatrix->displayMatrix();
-
-    return nullptr;
+    return resultMatrix;
 }
 
 NeighboursList* Prim::generateMST(NeighboursList* list, int from)

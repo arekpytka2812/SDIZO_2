@@ -62,13 +62,7 @@ IncidenceMatrix* Kruskal::generateMST(IncidenceMatrix* incidenceMatrix)
         }
     }
 
-    std::cout << std::endl;
-
-    resultMatrix->displayMatrix();
-
-    std::cout << "totalcost : " << totalCost << std::endl;
-
-    return nullptr;
+    return resultMatrix;
 }
 
 NeighboursList* Kruskal::generateMST(NeighboursList* list)

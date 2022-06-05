@@ -5,7 +5,7 @@
 #include "../../Structures/IncidenceMatrix/IncidenceMatrix.h"
 #include "../../Structures/NeighboursList/NeighboursList.h"
 #include "../../Structures/EdgeHeap/Heap.h"
-#include "../../Structures/Path.h"
+#include "../../Structures/Path/Path.h"
 
 class BellmanFord {
 

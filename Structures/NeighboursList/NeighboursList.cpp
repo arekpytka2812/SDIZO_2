@@ -8,8 +8,10 @@ Edge::Edge(const size_t &source_, const size_t &destination_, int cost_)
 
 
 NeighboursList::NeighboursList(const size_t& nodesNumber_, const size_t& edgesNumber_, const size_t* data)
-    : nodesNumber(nodesNumber_), edgesNumber(edgesNumber_)
 {
+    this->nodesNumber = nodesNumber_;
+    this->edgesNumber = edgesNumber_;
+
     // initializing table with nullptrs
     this->edgeTable = new Edge * [this->nodesNumber]{nullptr};
 
@@ -42,11 +44,12 @@ NeighboursList::NeighboursList(const size_t& nodesNumber_, const size_t& edgesNu
 }
 
 NeighboursList::NeighboursList(const size_t& nodesNumber_, const size_t& edgesNumber_)
-        : nodesNumber(nodesNumber_), edgesNumber(edgesNumber_)
 {
+    this->nodesNumber = nodesNumber_;
+    this->edgesNumber = edgesNumber_;
+
     // initializing table with nullptrs
     this->edgeTable = new Edge * [this->nodesNumber]{nullptr};
-
 }
 
 NeighboursList::~NeighboursList()
@@ -105,7 +108,7 @@ void NeighboursList::addFront(const size_t& source_, const size_t& destination_,
     edgeTable[source_] = tempEdge;
 }
 
-void NeighboursList::displayList()
+void NeighboursList::displayGraph()
 {
     for (int i = 0; i < this->nodesNumber; i++)
     {
@@ -121,4 +124,24 @@ void NeighboursList::displayList()
 
         std::cout << "\n";
     }
+}
+
+size_t NeighboursList::getNodesNumber()
+{
+    return this->nodesNumber;
+}
+
+size_t NeighboursList::getEdgesNumber()
+{
+    return this->edgesNumber;
+}
+
+size_t NeighboursList::getDensity()
+{
+    return this->density;
+}
+
+Edge** NeighboursList::getEdgeTable()
+{
+    return this->edgeTable;
 }

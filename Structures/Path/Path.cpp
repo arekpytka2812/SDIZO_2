@@ -69,7 +69,8 @@ void Path::displayPath()
         return;
     }
 
-    std::cout << "Start node: |" << nodes[0] << " : " << costs[0] << "|";
+    std::cout << "Path from: " << nodes[0] << " to " << nodes[this->size - 1] << std::endl;
+    std::cout << "|" << nodes[0] << " : " << costs[0] << "|";
 
     for(int i = 1; i < this->size; i++)
     {

@@ -4,12 +4,9 @@
 #include <cstdlib>
 #include <iostream>
 #include <iomanip>
+#include "../Graph.h"
 
-class IncidenceMatrix {
-
-    size_t nodesNumber;
-    size_t edgesNumber;
-    size_t density;
+class IncidenceMatrix : public Graph{
 
     size_t usedEdges = 0;
 
@@ -24,27 +21,14 @@ public:
 
     void addEdge(const size_t &source, const size_t &destination, const size_t &cost);
 
-    void displayMatrix();
+    void displayGraph() override;
 
-    size_t getNodesNumber()
-    {
-        return this->nodesNumber;
-    }
+    size_t getNodesNumber() override;
+    size_t getEdgesNumber() override;
+    size_t getDensity() override;
 
-    size_t getEdgesNumber()
-    {
-        return this->edgesNumber;
-    }
-
-    int** getMatrix()
-    {
-        return this->matrix;
-    }
-
-    int* getEdgesValues()
-    {
-        return this->edgesValues;
-    }
+    int** getMatrix();
+    int* getEdgesValues();
 };
 
 

@@ -3,6 +3,7 @@
 
 #include <cstddef>
 #include <iostream>
+#include "../Graph.h"
 
 struct Edge
 {
@@ -16,11 +17,7 @@ struct Edge
     Edge* previous = nullptr;
 };
 
-class NeighboursList {
-
-    size_t nodesNumber;
-    size_t edgesNumber;
-    size_t density;
+class NeighboursList : public Graph {
 
     Edge **edgeTable;
 
@@ -33,22 +30,14 @@ public:
 
     void addFront(const size_t& source_, const size_t& destination_, const size_t& cost_);
 
-    void displayList();
+    void displayGraph() override;
 
-    Edge** getEdgeTable()
-    {
-        return this->edgeTable;
-    }
+    size_t getNodesNumber() override;
+    size_t getEdgesNumber() override;
+    size_t getDensity() override;
 
-    size_t getNodesNumber()
-    {
-        return this->nodesNumber;
-    }
+    Edge** getEdgeTable();
 
-    size_t getEdgesNumber()
-    {
-        return this->edgesNumber;
-    }
 
 };
 

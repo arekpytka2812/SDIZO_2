@@ -1,9 +1,11 @@
 #include "main.h"
 
-// TODO 1) add writting to file
-// TODO 2) create tests
-// TODO 3) create menu
-
+/*
+    TODO 1) create tests
+    TODO 2) create menu
+    TODO 3) change printing
+    TODO 4) add comments
+ */
 
 int main() {
 
@@ -21,19 +23,42 @@ int main() {
             4, 5, 3
     };
 
-    auto gg = new GraphGenerator(15, 80);
+    auto gg = new GraphGenerator(9, 25);
 
-    auto matrix = new IncidenceMatrix(6, 9, tab);
-    auto list = new NeighboursList(6, 9, tab);
+    std::cout << gg->getEdgesNumber();
 
-//    matrix->displayMatrix();
+    IncidenceMatrix* matrix = nullptr;
+    NeighboursList* list = nullptr;
 
-    list->displayList();
+    matrix = new IncidenceMatrix(6, 9, tab);
+    list = new NeighboursList(6, 9, tab);
 
-    Dijkstra::findShortestPath(list, 5, 3)->displayPath();
+    Graph* const graphs[2] = {matrix, list};
 
- //   Dijkstra::findShortestPath(matrix, 0, 5)->displayPath();
-  //  path->displayPath();
+  //  auto fm = new FileManager();
+
+    matrix->displayGraph();
+    list->displayGraph();
+    graphs[0]->displayGraph();
+    graphs[1]->displayGraph();
+
+
+
+//    BellmanFord::findShortestPath(list, 0, 5)->displayPath();
+//
+//    std::cout << std::endl;
+//
+//    BellmanFord::findShortestPath(matrix, 0, 5)->displayPath();
+//
+//    std::cout << std::endl;
+//
+//    Dijkstra::findShortestPath(list, 0, 5)->displayPath();
+//
+//    std::cout << std::endl;
+//
+//    Dijkstra::findShortestPath(matrix, 0, 5)->displayPath();
+//
+//    Dijkstra::findShortestPath(matrix, 0, 5)->displayPath();
 //
 //    Kruskal::generateMST(matrix);
 //

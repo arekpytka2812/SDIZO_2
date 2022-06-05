@@ -5,7 +5,7 @@
 
 #include "../../Structures/NeighboursList/NeighboursList.h"
 #include "../../Structures/IncidenceMatrix/IncidenceMatrix.h"
-#include "../../Structures/Path.h"
+#include "../../Structures/Path/Path.h"
 
 class Dijkstra{
 

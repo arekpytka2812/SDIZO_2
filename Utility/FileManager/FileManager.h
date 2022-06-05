@@ -14,6 +14,9 @@ class FileManager {
     std::fstream graphFile;
     std::string graphPath;
 
+    std::fstream resultsFile;
+    std::string resultsPath;
+
 public:
 
     FileManager();
@@ -21,6 +24,8 @@ public:
     ~FileManager();
 
     void readFromFile();
+
+    void writeToFile(size_t nodesNumber, size_t density, double time);
 
     size_t *getTable()
     {
