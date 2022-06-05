@@ -29,7 +29,7 @@ public:
     NeighboursList(const size_t& nodesNumber_, const size_t& edgesNumber_);
     ~NeighboursList();
 
-    void addEdge(Edge * edge); //TODO change the way of sending arguments
+    void addEdge(const size_t& source_, const size_t& destination_, const size_t& cost_);
 
     void addFront(const size_t& source_, const size_t& destination_, const size_t& cost_);
 

@@ -5,6 +5,7 @@
 
 #include "../../Structures/NeighboursList/NeighboursList.h"
 #include "../../Structures/IncidenceMatrix/IncidenceMatrix.h"
+#include "../../Structures/Path.h"
 
 class Dijkstra{
 
@@ -13,11 +14,9 @@ class Dijkstra{
 
 public:
 
-    // TODO add "to" parameter and change the return type
+    static Path* findShortestPath(IncidenceMatrix *incidenceMatrix, int from, int to);
 
-    static IncidenceMatrix* findShortestPath(IncidenceMatrix *incidenceMatrix, int from);
-
-    static NeighboursList* findShortestPath(NeighboursList *list, int from);
+    static Path* findShortestPath(NeighboursList *list, int from, int to);
 };
 
 

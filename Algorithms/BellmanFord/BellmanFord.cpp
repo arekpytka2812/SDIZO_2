@@ -1,7 +1,7 @@
 #include "BellmanFord.h"
 
 
-IncidenceMatrix* BellmanFord::findShortestPath(IncidenceMatrix *incidenceMatrix, int from)
+Path* BellmanFord::findShortestPath(IncidenceMatrix *incidenceMatrix, int from, int to)
 {
     auto nodesNumber = incidenceMatrix->getNodesNumber();
     auto edgesNumber = incidenceMatrix->getEdgesNumber();
@@ -60,18 +60,33 @@ IncidenceMatrix* BellmanFord::findShortestPath(IncidenceMatrix *incidenceMatrix,
             break;
     }
 
-    for(int i = 0; i < nodesNumber; i++)
-        std::cout << distances[i] << "    ";
+    // variables for creating Path
+    auto resultPath = new Path();
+    auto currentIndex = to;
+    auto tempPrevious = previous[currentIndex];
 
-    std::cout << "\n";
+    do
+    {
+        if(currentIndex == from)
+        {
+            resultPath->addFront(currentIndex, 0);
+            break;
+        }
 
-    for(int i = 0; i < nodesNumber; i++)
-        std::cout << previous[i] << "    ";
+        if(distances[currentIndex] == INT_MAX)
+            break;
 
-    return nullptr;
+        resultPath->addFront(currentIndex, distances[currentIndex] - distances[tempPrevious]);
+
+        currentIndex = tempPrevious;
+        tempPrevious = previous[currentIndex];
+
+    }while(currentIndex != -1);
+
+    return resultPath;
 }
 
-NeighboursList* BellmanFord::findShortestPath(NeighboursList *list, int from)
+Path* BellmanFord::findShortestPath(NeighboursList *list, int from, int to)
 {
     auto nodesNumber = list->getNodesNumber();
     auto edgesNumber = list->getEdgesNumber();
@@ -120,15 +135,30 @@ NeighboursList* BellmanFord::findShortestPath(NeighboursList *list, int from)
         }
     }
 
-    for(int i = 0; i < nodesNumber; i++)
-        std::cout << distances[i] << "    ";
+    // variables for creating Path
+    auto resultPath = new Path();
+    auto currentIndex = to;
+    auto tempPrevious = previous[currentIndex];
 
-    std::cout << "\n";
+    do
+    {
+        if(currentIndex == from)
+        {
+            resultPath->addFront(currentIndex, 0);
+            break;
+        }
 
-    for(int i = 0; i < nodesNumber; i++)
-        std::cout << previous[i] << "    ";
+        if(distances[currentIndex] == INT_MAX)
+            break;
 
-    return nullptr;
+        resultPath->addFront(currentIndex, distances[currentIndex] - distances[tempPrevious]);
+
+        currentIndex = tempPrevious;
+        tempPrevious = previous[currentIndex];
+
+    }while(currentIndex != -1);
+
+    return resultPath;
 }
 
 int BellmanFord::getMin(bool* visited, bool* toRelax, size_t size)

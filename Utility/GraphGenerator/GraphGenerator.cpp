@@ -1,6 +1,8 @@
 #include <cmath>
 #include "GraphGenerator.h"
 
+// TODO check wheter graph will be connected
+
 GraphGenerator::GraphGenerator(size_t nodesNumber_, size_t density_)
     :nodesNumber(nodesNumber_), density(density_)
 {
@@ -51,7 +53,7 @@ GraphGenerator::GraphGenerator(size_t nodesNumber_, size_t density_)
 
         for(int i = 0; data[i] != INT_MAX; i += 3)
         {
-            if(data[i] == source && data[i + 1] == destination)
+            if(data[i] == source && data[i + 1] == destination || data[i] == destination && data[i + 1] == source)
             {
                 exists = true;
                 break;
@@ -77,5 +79,4 @@ GraphGenerator::~GraphGenerator()
     this->nodesNumber = 0;
     this->edgesNumber = 0;
     this->density = 0;
-
 }

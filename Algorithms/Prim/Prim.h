@@ -1,5 +1,5 @@
-#ifndef SDIZO_2_PRIMALGORITHM_H
-#define SDIZO_2_PRIMALGORITHM_H
+#ifndef SDIZO_2_PRIM_H
+#define SDIZO_2_PRIM_H
 
 #include "../../Structures/IncidenceMatrix/IncidenceMatrix.h"
 #include "../../Structures/NeighboursList/NeighboursList.h"
@@ -10,8 +10,6 @@ class Prim{
     static bool isEmpty(bool* table, size_t size);
 
 public:
-
-    // TODO create special type for returns
 
     static IncidenceMatrix* generateMST(IncidenceMatrix* incidenceMatrix, int from);
 

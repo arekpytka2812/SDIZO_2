@@ -113,8 +113,7 @@ NeighboursList* Kruskal::generateMST(NeighboursList* list)
 
         if(setsID[minEdge->source] != setsID[minEdge->destination])
         {
-            tempEdge = new Edge(minEdge->source, minEdge->destination, minEdge->cost);
-            listToReturn->addEdge(tempEdge);
+            listToReturn->addEdge(minEdge->source, minEdge->destination, minEdge->cost);
 
             auto oldID = setsID[minEdge->source];
             auto newID = setsID[minEdge->destination];

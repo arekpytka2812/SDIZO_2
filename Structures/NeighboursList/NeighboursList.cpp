@@ -70,8 +70,10 @@ NeighboursList::~NeighboursList()
     this->edgesNumber = 0;
 }
 
-void NeighboursList::addEdge(Edge *edge)
+void NeighboursList::addEdge(const size_t& source_, const size_t& destination_, const size_t& cost_)
 {
+    auto edge = new Edge(source_, destination_, cost_);
+
     if(this->edgeTable[edge->source] == nullptr)
         edgeTable[edge->source] = edge;
     else

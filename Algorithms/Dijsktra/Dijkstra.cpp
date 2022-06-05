@@ -1,6 +1,6 @@
 #include "Dijkstra.h"
 
-IncidenceMatrix* Dijkstra::findShortestPath(IncidenceMatrix *incidenceMatrix, int from)
+Path* Dijkstra::findShortestPath(IncidenceMatrix *incidenceMatrix, int from, int to)
 {
     auto nodesNumber = incidenceMatrix->getNodesNumber();
     auto edgesNumber = incidenceMatrix->getEdgesNumber();
@@ -91,7 +91,6 @@ IncidenceMatrix* Dijkstra::findShortestPath(IncidenceMatrix *incidenceMatrix, in
                         destination = j;
                         break;
                     }
-
                 }
 
                 heap->push(new Edge(source, destination, edgeValues[i]));
@@ -100,13 +99,28 @@ IncidenceMatrix* Dijkstra::findShortestPath(IncidenceMatrix *incidenceMatrix, in
 
     }
 
-    for(int i = 0; i < nodesNumber; i++)
-        std::cout << distances[i] << "    ";
+    // variables for creating Path
+    auto resultPath = new Path();
+    auto currentIndex = to;
+    auto tempPrevious = previous[currentIndex];
 
-    std::cout << "\n";
+    do
+    {
+        if(currentIndex == from)
+        {
+            resultPath->addFront(currentIndex, 0);
+            break;
+        }
 
-    for(int i = 0; i < nodesNumber; i++)
-        std::cout << previous[i] << "    ";
+        if(distances[currentIndex] == INT_MAX)
+            break;
+
+        resultPath->addFront(currentIndex, distances[currentIndex] - distances[tempPrevious]);
+
+        currentIndex = tempPrevious;
+        tempPrevious = previous[currentIndex];
+
+    }while(currentIndex != -1);
 
     minEdge = nullptr;
 
@@ -115,10 +129,10 @@ IncidenceMatrix* Dijkstra::findShortestPath(IncidenceMatrix *incidenceMatrix, in
     delete[] distances;
     delete[] nodesToRelax;
 
-    return nullptr;
+    return resultPath;
 }
 
-NeighboursList* Dijkstra::findShortestPath(NeighboursList *list, int from)
+Path* Dijkstra::findShortestPath(NeighboursList *list, int from, int to)
 {
     // initializing necessary variables
     auto nodesNumber = list->getNodesNumber();
@@ -198,14 +212,28 @@ NeighboursList* Dijkstra::findShortestPath(NeighboursList *list, int from)
 
     }
 
-    for(int i = 0; i < nodesNumber; i++)
-        std::cout << distances[i] << "    ";
+    // variables for creating Path
+    auto resultPath = new Path();
+    auto currentIndex = to;
+    auto tempPrevious = previous[currentIndex];
 
-    std::cout << "\n";
+    do
+    {
+        if(currentIndex == from)
+        {
+            resultPath->addFront(currentIndex, 0);
+            break;
+        }
 
-    for(int i = 0; i < nodesNumber; i++)
-        std::cout << previous[i] << "    ";
+        if(distances[currentIndex] == INT_MAX)
+            break;
 
+        resultPath->addFront(currentIndex, distances[currentIndex] - distances[tempPrevious]);
+
+        currentIndex = tempPrevious;
+        tempPrevious = previous[currentIndex];
+
+    }while(currentIndex != -1);
 
     // clearing and realeasing memory
     minNode = nullptr;
@@ -216,9 +244,7 @@ NeighboursList* Dijkstra::findShortestPath(NeighboursList *list, int from)
     delete[] distances;
     delete[] nodesToRelax;
 
-
-
-    return nullptr;
+    return resultPath;
 }
 
 bool Dijkstra::isEmpty(bool *table, size_t size)

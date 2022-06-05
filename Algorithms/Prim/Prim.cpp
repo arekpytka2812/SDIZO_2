@@ -1,4 +1,4 @@
-#include "PrimAlgorithm.h"
+#include "Prim.h"
 
 IncidenceMatrix* Prim::generateMST(IncidenceMatrix* incidenceMatrix, int from)
 {
@@ -150,12 +150,10 @@ NeighboursList* Prim::generateMST(NeighboursList* list, int from)
         // if hasnt, adding it to result list
         if(!visitedNodes[minEdge->destination])
         {
-            auto tempEdge = new Edge(minEdge->source, minEdge->destination, minEdge->cost);
-
             totalCost += minEdge->cost;
             visitedNodes[minEdge->destination] = true;
 
-            listToReturn->addEdge(tempEdge);
+            listToReturn->addEdge(minEdge->source, minEdge->destination, minEdge->cost);
 
             // adding new edges to heap
             for(int i = 0; i < nodesNumber; i++)
@@ -175,12 +173,10 @@ NeighboursList* Prim::generateMST(NeighboursList* list, int from)
 
         if(!visitedNodes[minEdge->source])
         {
-            auto tempEdge = new Edge(minEdge->destination, minEdge->source, minEdge->cost);
-
             totalCost += minEdge->cost;
             visitedNodes[minEdge->source] = true;
 
-            listToReturn->addEdge(tempEdge);
+            listToReturn->addEdge(minEdge->destination, minEdge->source, minEdge->cost);
 
             // adding new edges to heap
             for(int i = 0; i < nodesNumber; i++)
