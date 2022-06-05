@@ -10,6 +10,9 @@ class Prim{
     static bool isEmpty(bool* table, size_t size);
 
 public:
+
+    // TODO create special type for returns
+
     static IncidenceMatrix* generateMST(IncidenceMatrix* incidenceMatrix, int from);
 
     static NeighboursList* generateMST(NeighboursList* list, int from);

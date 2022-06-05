@@ -1,7 +1,5 @@
 #include "PrimAlgorithm.h"
 
-// TODO create special type for returns
-
 IncidenceMatrix* Prim::generateMST(IncidenceMatrix* incidenceMatrix, int from)
 {
     // initializing local variables

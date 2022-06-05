@@ -1,15 +1,14 @@
-#ifndef SDIZO_2_DIJKSTRA_H
-#define SDIZO_2_DIJKSTRA_H
+#ifndef SDIZO_2_BELLMANFORD_H
+#define SDIZO_2_BELLMANFORD_H
 
+
+#include "../../Structures/IncidenceMatrix/IncidenceMatrix.h"
+#include "../../Structures/NeighboursList/NeighboursList.h"
 #include "../../Structures/EdgeHeap/Heap.h"
 
-#include "../../Structures/NeighboursList/NeighboursList.h"
-#include "../../Structures/IncidenceMatrix/IncidenceMatrix.h"
+class BellmanFord {
 
-class Dijkstra{
-
-    static bool isEmpty(bool *table, size_t size);
-    static int getMin(size_t *table, bool* visited, bool *toRelax, size_t size);
+    static int getMin(bool* visited, bool* toRelax, size_t size);
 
 public:
 
@@ -18,6 +17,7 @@ public:
     static IncidenceMatrix* findShortestPath(IncidenceMatrix *incidenceMatrix, int from);
 
     static NeighboursList* findShortestPath(NeighboursList *list, int from);
+
 };
 
 

@@ -1,7 +1,5 @@
 #include "Kruskal.h"
 
-// TODO create special type for returns
-
 IncidenceMatrix* Kruskal::generateMST(IncidenceMatrix* incidenceMatrix)
 {
     auto edgesNumber = incidenceMatrix->getEdgesNumber();

@@ -12,6 +12,8 @@ class Kruskal {
 
 public:
 
+    // TODO create special type for returns
+
     static IncidenceMatrix* generateMST(IncidenceMatrix* incidenceMatrix);
 
     static NeighboursList* generateMST(NeighboursList* list);
