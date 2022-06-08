@@ -11,7 +11,7 @@ FileManager::FileManager()
 
     if(resultsFile.good())
     {
-        this->resultsFile << "nodesNumber;" << "density;" << "time;" << std::endl;
+        this->resultsFile << "algorithm;" << "representation;" << "nodesNumber;" << "density;" << "time;" << std::endl;
         this->resultsFile.flush();
     }
 }
@@ -51,11 +51,12 @@ void FileManager::readFromFile()
     }
 }
 
-void FileManager::writeToFile(size_t nodesNumber_, size_t density_, double time_)
+void FileManager::writeToFile(std::string algorithm, std::string representation, size_t nodesNumber_, size_t density_, double time_)
 {
     if(this->resultsFile.good())
     {
-        this->resultsFile << nodesNumber_ << ";" << density_ << ";" << time_ << ";" << std::endl;
+        this->resultsFile << algorithm << ";" << representation << ";" << nodesNumber_
+                          << ";" << density_ << ";" << time_ << ";" << std::endl;
         this->resultsFile.flush();
     }
 }
