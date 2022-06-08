@@ -24,15 +24,17 @@ IncidenceMatrix::IncidenceMatrix(const size_t & nodeNumber_, const size_t &edgeN
     int edgeValueIndex = 0;
 
     for (int i = 0; i < edgesNumber; i++) {
-        //    auto value = data[dataIndex];
 
-        this->matrix[data[dataIndex]][i] = -1; // inserting edge origin
+        // inserting edge origin
+        this->matrix[data[dataIndex]][i] = -1;
         dataIndex++;
 
-        this->matrix[data[dataIndex]][i] = 1; // inserting edge destination
+        // inserting edge destination
+        this->matrix[data[dataIndex]][i] = 1;
         dataIndex++;
 
-        this->edgesValues[edgeValueIndex] = data[dataIndex]; // inserting edge value into table
+        // inserting edge value into table
+        this->edgesValues[edgeValueIndex] = data[dataIndex];
 
         dataIndex++;
         edgeValueIndex++;
@@ -46,8 +48,10 @@ IncidenceMatrix::IncidenceMatrix(const size_t & nodeNumber_, const size_t &edgeN
     this->nodesNumber = nodeNumber_;
     this->edgesNumber = edgeNumber_;
 
+    // initializing matrix
     matrix = new int*[this->nodesNumber];
 
+    // filling matrix with zeros
     for(int i = 0; i < this->nodesNumber; i++)
     {
         this->matrix[i] = new int [this->edgesNumber];
@@ -56,8 +60,10 @@ IncidenceMatrix::IncidenceMatrix(const size_t & nodeNumber_, const size_t &edgeN
             this->matrix[i][j] = 0;
     }
 
+    //  initializing edge values table and filling with -1
     this->edgesValues = new int [this->edgesNumber]{-1};
 
+    // calculating density
     this->density = ((2 * this->edgesNumber * 100) / (this->nodesNumber * (this->nodesNumber - 1)));
 }
 
@@ -80,10 +86,12 @@ IncidenceMatrix::~IncidenceMatrix()
 
 void IncidenceMatrix::addEdge(const size_t &source, const size_t &destination, const size_t &cost)
 {
+    // inserting source and destination to empty edge in matrix
     this->matrix[source][this->usedEdges] = -1;
     this->matrix[destination][this->usedEdges] = 1;
     this->edgesValues[this->usedEdges] = cost;
 
+    // increasing variable which controls amount of edges
     this->usedEdges++;
 }
 

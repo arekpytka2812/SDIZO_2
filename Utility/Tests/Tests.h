@@ -11,6 +11,8 @@ class Tests {
     Timer *timer = nullptr;
     FileManager *fm = nullptr;
 
+    Graph* graph = nullptr;
+
     constexpr static const int densities[4] = {25, 50, 75, 99};
     constexpr static const int nodesNumber[5] = {10, 15, 20, 25, 30};
 
@@ -22,10 +24,10 @@ public:
     Tests();
     ~Tests();
 
-    void MST(Graph* graph);
-    void shortestPath(Graph* graph);
+    void MST();
+    void shortestPath();
 
-    void allTests(Graph* graph);
+    void allTests();
 
 };
 

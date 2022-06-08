@@ -1,5 +1,7 @@
 #include "Kruskal.h"
 
+// TODO comments for matrix
+
 IncidenceMatrix* Kruskal::generateMST(IncidenceMatrix* incidenceMatrix)
 {
     auto edgesNumber = incidenceMatrix->getEdgesNumber();
@@ -67,16 +69,19 @@ IncidenceMatrix* Kruskal::generateMST(IncidenceMatrix* incidenceMatrix)
 
 NeighboursList* Kruskal::generateMST(NeighboursList* list)
 {
+    // inserting needed data
     auto edgesNumber = list->getEdgesNumber();
     auto nodesNumber = list->getNodesNumber();
     auto edgesTable = list->getEdgeTable();
 
+    // creating min heap and return list
     auto heap = new Heap();
     auto listToReturn = new NeighboursList(nodesNumber, edgesNumber);
 
     int totalCost = 0;
     int connectingEdges = 0;
 
+    // this table includes ids of kruskal sets
     auto setsID = new size_t[nodesNumber];
 
     for(int i = 0; i < nodesNumber; i++)
@@ -86,6 +91,7 @@ NeighboursList* Kruskal::generateMST(NeighboursList* list)
 
     Edge* tempEdge = nullptr;
 
+    // pushing edge into min heap
     for(int i = 0; i < nodesNumber; i++)
     {
         tempEdge = edgesTable[i];
@@ -97,18 +103,24 @@ NeighboursList* Kruskal::generateMST(NeighboursList* list)
         }
     }
 
-
+    // main algorithm
     while(heap->getSize())
     {
+        // poping min edge
         auto minEdge = heap->pop();
 
+        // condition of v-1 connecting edges
         if(connectingEdges == nodesNumber - 1)
             break;
 
+        // checking if source and destination of min edge
+        // are in the same set
         if(setsID[minEdge->source] != setsID[minEdge->destination])
         {
+            // adding edge into return list
             listToReturn->addEdge(minEdge->source, minEdge->destination, minEdge->cost);
 
+            // changing sets id
             auto oldID = setsID[minEdge->source];
             auto newID = setsID[minEdge->destination];
 
@@ -118,6 +130,7 @@ NeighboursList* Kruskal::generateMST(NeighboursList* list)
                     setsID[i] = newID;
             }
 
+            // increasing costs and connectind edges
             totalCost += minEdge->cost;
             connectingEdges++;
         }

@@ -28,8 +28,6 @@ public:
 
     void addEdge(const size_t& source_, const size_t& destination_, const size_t& cost_);
 
-    void addFront(const size_t& source_, const size_t& destination_, const size_t& cost_);
-
     void displayGraph() override;
 
     size_t getNodesNumber() override;

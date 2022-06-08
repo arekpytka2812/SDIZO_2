@@ -1,5 +1,7 @@
 #include "Heap.h"
 
+// TODO comments
+
 Heap::Heap()
 {
     this->size = 0;

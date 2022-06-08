@@ -1,20 +1,22 @@
 #include "BellmanFord.h"
 
+// TODO comments
 
 Path* BellmanFord::findShortestPath(IncidenceMatrix *incidenceMatrix, int from, int to)
 {
+    // inserting needed data
     auto nodesNumber = incidenceMatrix->getNodesNumber();
     auto edgesNumber = incidenceMatrix->getEdgesNumber();
     auto matrix = incidenceMatrix->getMatrix();
     auto edgeValues = incidenceMatrix->getEdgesValues();
 
-    auto returnMatrix = new IncidenceMatrix(nodesNumber, edgesNumber);
-
+    // creating tables of distances and previous node
     auto distances = new size_t [nodesNumber];
     auto previous = new int [nodesNumber];
 
     bool hasChanged = false;
 
+    // insterting startup values
     for(int i = 0; i < nodesNumber; i++)
     {
         distances[i] = INT_MAX;
@@ -65,6 +67,7 @@ Path* BellmanFord::findShortestPath(IncidenceMatrix *incidenceMatrix, int from, 
     auto currentIndex = to;
     auto tempPrevious = previous[currentIndex];
 
+    // inserting path into Path object
     do
     {
         if(currentIndex == from)

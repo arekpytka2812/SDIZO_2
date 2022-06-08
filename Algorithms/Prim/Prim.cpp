@@ -1,5 +1,7 @@
 #include "Prim.h"
 
+// TODO few comments
+
 IncidenceMatrix* Prim::generateMST(IncidenceMatrix* incidenceMatrix, int from)
 {
     // initializing local variables

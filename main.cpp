@@ -9,6 +9,8 @@
 
 int main() {
 
+    int chuj;
+
     srand(time(nullptr));
 
     size_t tab[] = {
@@ -23,9 +25,7 @@ int main() {
             4, 5, 3
     };
 
-    auto gg = new GraphGenerator(9, 25);
-
-    std::cout << gg->getEdgesNumber();
+    auto gg = new GraphGenerator(10, 65);
 
     IncidenceMatrix* matrix = nullptr;
     NeighboursList* list = nullptr;
@@ -33,16 +33,16 @@ int main() {
     matrix = new IncidenceMatrix(6, 9, tab);
     list = new NeighboursList(6, 9, tab);
 
-    Graph* const graphs[2] = {matrix, list};
-
-  //  auto fm = new FileManager();
+    Graph* graphs[2] = {matrix, list};
 
     matrix->displayGraph();
     list->displayGraph();
+
     graphs[0]->displayGraph();
     graphs[1]->displayGraph();
 
-
+    delete matrix;
+    delete list;
 
 //    BellmanFord::findShortestPath(list, 0, 5)->displayPath();
 //

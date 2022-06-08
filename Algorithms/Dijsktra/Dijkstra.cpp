@@ -2,19 +2,23 @@
 
 Path* Dijkstra::findShortestPath(IncidenceMatrix *incidenceMatrix, int from, int to)
 {
+    // inserting needed data
     auto nodesNumber = incidenceMatrix->getNodesNumber();
     auto edgesNumber = incidenceMatrix->getEdgesNumber();
     auto matrix = incidenceMatrix->getMatrix();
     auto edgeValues =  incidenceMatrix->getEdgesValues();
 
+    // creating min heap to sort
+    // edges that can be used to create path
     auto heap = new Heap();
-    auto returnList = new NeighboursList(nodesNumber, edgesNumber);
 
+    // creating needed tables
     auto distances = new size_t [nodesNumber];
     auto previous = new int [nodesNumber];
     auto visitedNodes = new bool [nodesNumber];
     auto nodesToRelax = new bool [nodesNumber];
 
+    // filling them with startup value
     for(int i = 0; i < nodesNumber; i++)
     {
         distances[i] = INT_MAX;
@@ -23,8 +27,8 @@ Path* Dijkstra::findShortestPath(IncidenceMatrix *incidenceMatrix, int from, int
         nodesToRelax[i] = true;
     }
 
-    // inserting edge heap
-
+    // inserting edge heap with edges
+    // from visited nodes
     for(int i = 0; i < edgesNumber; i++)
     {
         size_t source, destination;
@@ -45,7 +49,7 @@ Path* Dijkstra::findShortestPath(IncidenceMatrix *incidenceMatrix, int from, int
         }
     }
 
-
+    // setting values for start node
     distances[from] = 0;
     visitedNodes[from] = true;
     nodesToRelax[from] = false;
@@ -53,12 +57,16 @@ Path* Dijkstra::findShortestPath(IncidenceMatrix *incidenceMatrix, int from, int
 
     Edge *minEdge = nullptr;
 
+    // main algorith
     while(isEmpty(visitedNodes, nodesNumber))
     {
+        // if heap !=0 then there are still edges to check
         if(heap->getSize() != 0)
         {
+            // poping min edge
             minEdge = heap->pop();
 
+            // dijsktra condition
             if(distances[minEdge->destination] > distances[minEdge->source] + minEdge->cost)
             {
                 distances[minEdge->destination] = distances[minEdge->source] + minEdge->cost;
@@ -68,14 +76,18 @@ Path* Dijkstra::findShortestPath(IncidenceMatrix *incidenceMatrix, int from, int
             continue;
         }
 
+        // setting current node flags
         nodesToRelax[currentNode] = false;
         visitedNodes[currentNode] = true;
 
+        // getting new node to dheck
         currentNode = getMin(distances, visitedNodes, nodesToRelax, nodesNumber);
 
+        // if there is no right node, the algorithm will end
         if(currentNode == -1)
             break;
 
+        // pushing into heap edges of current node
         for(int i = 0; i < edgesNumber; i++)
         {
             size_t source, destination;
@@ -104,6 +116,7 @@ Path* Dijkstra::findShortestPath(IncidenceMatrix *incidenceMatrix, int from, int
     auto currentIndex = to;
     auto tempPrevious = previous[currentIndex];
 
+    // creating path
     do
     {
         if(currentIndex == from)
@@ -122,6 +135,7 @@ Path* Dijkstra::findShortestPath(IncidenceMatrix *incidenceMatrix, int from, int
 
     }while(currentIndex != -1);
 
+    // clearing and realeasing memory
     minEdge = nullptr;
 
     delete heap;
@@ -217,6 +231,7 @@ Path* Dijkstra::findShortestPath(NeighboursList *list, int from, int to)
     auto currentIndex = to;
     auto tempPrevious = previous[currentIndex];
 
+    // creating path
     do
     {
         if(currentIndex == from)

@@ -15,21 +15,26 @@ Tests::~Tests()
     delete fm;
 }
 
-void Tests::MST(Graph* graph)
+void Tests::MST()
 {
+
+
     auto source = rand() % nodesNumber[currentNodesNumber];
     auto destination = rand() % nodesNumber[currentNodesNumber];
 
+    while(source == destination)
+        destination = rand() % nodesNumber[currentNodesNumber];
+
 
 
 }
 
-void Tests::shortestPath(Graph* graph)
+void Tests::shortestPath()
 {
 
 }
 
-void Tests::allTests(Graph *graph)
+void Tests::allTests()
 {
 
 }
