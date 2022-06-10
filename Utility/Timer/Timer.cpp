@@ -2,7 +2,7 @@
 
 void Timer::startTimer()
 {
-    LARGE_INTEGER li;
+    this->reset();
 
     if(!QueryPerformanceFrequency(&li))
         std::cout << "QueryPerformanceFrequency failed!\n";
@@ -15,7 +15,6 @@ void Timer::startTimer()
 
 double Timer::stopTimer()
 {
-    LARGE_INTEGER li;
     QueryPerformanceCounter(&li);
     return double(li.QuadPart-CounterStart)/PCFreq;
 }

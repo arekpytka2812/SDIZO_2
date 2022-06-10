@@ -27,7 +27,7 @@ public:
 
     void writeToFile(std::string algorithm, std::string representation, size_t nodesNumber, size_t density, double time);
 
-    size_t *getTable()
+    size_t *getData()
     {
         return this->table;
     }

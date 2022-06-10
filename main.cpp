@@ -10,8 +10,6 @@
 
 int main() {
 
-    int chuj;
-
     srand(time(nullptr));
 
     size_t tab[] = {
@@ -26,15 +24,9 @@ int main() {
             4, 5, 3
     };
 
-    Tests *tests = new Tests();
+    Menu menu;
 
-    tests->allTests();
-
-//    GraphGenerator *gg = new GraphGenerator(10, 25);
-//
-//    IncidenceMatrix *incidenceMatrix = new IncidenceMatrix(gg->getNodesNumber(),
-//                                               gg->getEdgesNumber(),
-//                                               gg->getData());
+    menu.mainMenu();
 
     return 0;
 }

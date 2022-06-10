@@ -42,7 +42,7 @@ void Tests::MST()
                 delete this->returnList;
             }
 
-            time /= 100;
+            time /= (double)100;
 
             this->fm->writeToFile("Prim", "list", nodesNumber[j], densities[k], time);
         }
@@ -72,7 +72,7 @@ void Tests::MST()
                 delete this->returnMatrix;
             }
 
-            time /= 100;
+            time /= (double)100;
 
             this->fm->writeToFile("Prim", "matrix",  nodesNumber[j], densities[k], time);
         }
@@ -104,7 +104,7 @@ void Tests::MST()
                 delete this->returnList;
             }
 
-            time /= 100;
+            time /= (double)100;
 
             this->fm->writeToFile("Kruskal", "list", nodesNumber[j], densities[k], time);
         }
@@ -134,7 +134,7 @@ void Tests::MST()
                 delete this->returnMatrix;
             }
 
-            time /= 100;
+            time /= (double)100;
 
             this->fm->writeToFile("Kruskal", "matrix",  nodesNumber[j], densities[k], time);
         }
@@ -176,7 +176,7 @@ void Tests::shortestPath()
                 delete this->returnPath;
             }
 
-            time /= 100;
+            time /= (double)100;
 
             this->fm->writeToFile("Bellman", "list", nodesNumber[j], densities[k], time);
         }
@@ -214,7 +214,7 @@ void Tests::shortestPath()
                 delete this->returnPath;
             }
 
-            time /= 100;
+            time /= (double)100;
 
             this->fm->writeToFile("Bellman", "matrix", nodesNumber[j], densities[k], time);
         }
@@ -252,7 +252,7 @@ void Tests::shortestPath()
                 delete this->returnPath;
             }
 
-            time /= 100;
+            time /= (double)100;
 
             this->fm->writeToFile("Dijkstra", "list", nodesNumber[j], densities[k], time);
         }
@@ -290,7 +290,7 @@ void Tests::shortestPath()
                 delete this->returnPath;
             }
 
-            time /= 100;
+            time /= (double)100;
 
             this->fm->writeToFile("Dijkstra", "matrix", nodesNumber[j], densities[k], time);
         }
