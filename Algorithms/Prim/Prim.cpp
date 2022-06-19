@@ -13,7 +13,7 @@ IncidenceMatrix* Prim::generateMST(IncidenceMatrix* incidenceMatrix, int from)
     int totalCost = 0;
 
     auto heap = new Heap();
-    auto resultMatrix = new IncidenceMatrix(nodesNumber, edgesNumber);
+    auto resultMatrix = new IncidenceMatrix(nodesNumber, nodesNumber - 1);
 
     auto visitedNodes = new bool[nodesNumber]{false};
     visitedNodes[from] = true;
@@ -58,7 +58,7 @@ IncidenceMatrix* Prim::generateMST(IncidenceMatrix* incidenceMatrix, int from)
             {
                 size_t source, destination;
 
-                if(matrix[minEdge->source][i] != 0 || matrix[minEdge->destination != 0])
+                if(matrix[minEdge->source][i]  || matrix[minEdge->destination][i])
                 {
                     for(int j = 0; j < nodesNumber; j++)
                     {
@@ -86,7 +86,7 @@ IncidenceMatrix* Prim::generateMST(IncidenceMatrix* incidenceMatrix, int from)
             {
                 size_t source, destination;
 
-                if(matrix[minEdge->source][i] != 0 || matrix[minEdge->destination])
+                if(matrix[minEdge->source][i] || matrix[minEdge->destination][i])
                 {
                     for(int j = 0; j < nodesNumber; j++)
                     {

@@ -60,6 +60,10 @@ void Menu::MST()
             case 2:
                 std::cout << "Type nodes number and density:" << std::endl;
                 std::cin >> nodes >> density;
+
+                if(gg != nullptr)
+                    delete gg;
+
                 gg = new GraphGenerator(nodes, density);
 
                 if(matrix != nullptr || list != nullptr)
@@ -104,6 +108,13 @@ void Menu::MST()
                 listResult->displayGraph();
                 break;
             case 6:
+
+                delete matrix;
+                delete matrixResult;
+
+                delete list;
+                delete listResult;
+
                 break;
         }
     }
@@ -143,6 +154,10 @@ void Menu::shortestPath()
 
                 std::cout << "Type nodes number and density:" << std::endl;
                 std::cin >> nodes >> density;
+
+                if(gg != nullptr)
+                    delete gg;
+
                 gg = new GraphGenerator(nodes, density);
 
                 if(matrix != nullptr || list != nullptr)
@@ -208,6 +223,9 @@ void Menu::shortestPath()
                 break;
 
             case 6:
+
+                delete matrix;
+                delete list;
 
                 break;
         }

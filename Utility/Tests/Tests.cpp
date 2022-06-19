@@ -7,7 +7,6 @@ Tests::Tests()
     this->timer = new Timer();
 
     this->fm = new FileManager();
-
 }
 
 Tests::~Tests()

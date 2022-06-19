@@ -33,7 +33,7 @@ class Tests {
     GraphGenerator *gg = nullptr;
 
     constexpr static const int densities[4] = {25, 50, 75, 99};
-    constexpr static const int nodesNumber[5] = {10, 20, 40, 40, 50};
+    constexpr static const int nodesNumber[5] = {10, 20, 30, 40, 50};
 
     void MST();
     void shortestPath();
